@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "facilita-frontend",
-    "slug": "snack-3a082722-9fb9-40d5-8fd0-94d7d11f3211",
+    "name": "frontend-facilita-app",
+    "slug": "snack-6bff1a85-9da3-45ad-bbde-44d3bf998baf",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,9 +10,6 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {

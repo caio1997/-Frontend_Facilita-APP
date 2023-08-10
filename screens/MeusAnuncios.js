@@ -18,8 +18,7 @@ export default function Principal({ route, navigation }) {
     }).format(value);
 
   useEffect(() => {
-    console.log(idClient, localizacao)
-    fetch('https://backend-facilita-pos-fe11a1083fc9.herokuapp.com/api/anuncio/findByLocalizacao?localizacao=' + localizacao)
+    fetch('https://backend-facilita-pos-fe11a1083fc9.herokuapp.com/api/anuncio/findByUsuario/' + idClient)
       .then((response) => response.json())
       .then((responseJson) => {
         setDataSource(responseJson);
@@ -28,7 +27,7 @@ export default function Principal({ route, navigation }) {
         alert('Indisponibilidade no Sistema')
         console.error(error);
       });
-  }, [idClient, localizacao]);
+  }, [idClient]);
 
 
   const ItemView = (item) => {
@@ -80,17 +79,10 @@ export default function Principal({ route, navigation }) {
           </View>
         </View>
       </View>
-      <View style={{ height: '10%' }}>
-        <View style={{ width: '100%', height: '100%', flexDirection: 'row', top: -10 }}>
-          <View style={{ width: '30%', flexDirection: 'row', left: 20 }}>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>Localização:</Text>
-          </View>
-          <View style={{ height: '70%', flexDirection: 'row', left: 20 }}>
-            <Text style={{ color: 'black', fontSize: 20 }}>{localizacao}</Text>
-          </View>
-        </View>
+      <View style={{ height: '10%', left: 20 }}>
+        <Text style={{ color: 'black', fontSize: 30 }}>Meus Anúncios</Text>
       </View>
-      <View style={{ height: '80%', top: -50 }}>
+      <View style={{ height: '80%', top: -30 }}>
         <ScrollView>
           {
             dataSource.map(ItemView)
