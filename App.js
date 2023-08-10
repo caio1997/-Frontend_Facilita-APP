@@ -14,6 +14,7 @@ import EmailEnviado from './screens/EmailEnviado'
 import Anunciar from './screens/Anunciar'
 import PublicarAnuncio from './screens/PublicarAnuncio'
 import AnuncioPublicado from './screens/AnuncioPublicado'
+import MeusAnuncios from './screens/MeusAnuncios'
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ function MyStack() {
       <Stack.Screen name="Anunciar" component={Anunciar} />
       <Stack.Screen name="PublicarAnuncio" component={PublicarAnuncio} />
       <Stack.Screen name="AnuncioPublicado" component={AnuncioPublicado} />
+      <Stack.Screen name="MeusAnuncios" component={MeusAnuncios} />
     </Stack.Navigator>
   );
 }
