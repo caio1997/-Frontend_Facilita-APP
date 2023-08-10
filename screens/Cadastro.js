@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Image, Alert } from 'react-native';
+import { View, Image, Alert, Pressable } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import styles from '../style/MainStyle';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 export default function Cadastro({ navigation }) {
@@ -10,6 +11,19 @@ export default function Cadastro({ navigation }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [localizacao, setLocalizacao] = useState(null);
+
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+      setRightIcon('eye');
+      setPasswordVisibility(!passwordVisibility);
+    }
+  };
 
   const notImplementation = () => {
     Alert.alert("Observação", "Função não implementada")
@@ -93,25 +107,31 @@ export default function Cadastro({ navigation }) {
         />
 
         <Input
-          placeholder="*Password"
-          style={{ fontWeight: 'bold', color: 'black' }}
-          onChangeText={(value) => setPassword(value)}
-          secureTextEntry={true}
-          returnKeyType="done"
-          containerStyle={{ marginVertical: -5 }}
-        />
-
-        <Input
           placeholder="*Localização"
           style={{ fontWeight: 'bold', color: 'black' }}
           onChangeText={(value) => setLocalizacao(value)}
           returnKeyType="done"
           containerStyle={{ marginVertical: -5 }}
         />
+
+        <View style={{ width: '100%', height: '100%', flexDirection: 'row' }}>
+          <View style={{ width: '85%', flexDirection: 'row' }}>
+            <Input
+              placeholder="*Password"
+              style={{ fontWeight: 'bold', color: 'black' }}
+              onChangeText={(value) => setPassword(value)}
+              secureTextEntry={passwordVisibility}
+              returnKeyType="done"
+              containerStyle={{ marginVertical: -5 }}
+            />
+          </View>
+          <View style={{ height: '15%', flexDirection: 'row' }}>
+            <Pressable onPress={handlePasswordVisibility}>
+              <MaterialCommunityIcons name={rightIcon} size={22} color="#232323" />
+            </Pressable>
+          </View>
+        </View>
       </View>
-
-
-
 
       <View style={{ height: '20%', alignItems: 'center', top: 60 }}>
         <Button

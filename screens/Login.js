@@ -1,12 +1,26 @@
 import { useState, useEffect } from 'react';
-import { View, Image, Alert } from 'react-native';
+import { View, Image, Alert, Pressable } from 'react-native';
 import { Input, Text, Button } from 'react-native-elements';
 import styles from '../style/MainStyle';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+
+  const [passwordVisibility, setPasswordVisibility] = useState(true);
+  const [rightIcon, setRightIcon] = useState('eye');
+
+  const handlePasswordVisibility = () => {
+    if (rightIcon === 'eye') {
+      setRightIcon('eye-off');
+      setPasswordVisibility(!passwordVisibility);
+    } else if (rightIcon === 'eye-off') {
+      setRightIcon('eye');
+      setPasswordVisibility(!passwordVisibility);
+    }
+  };
 
   const logar = async () => {
     const params = {
@@ -64,13 +78,23 @@ export default function Login({ navigation }) {
           keyboardType="email-address"
           returnKeyType="done"
         />
-        <Input
-          placeholder="Password"
-          style={{ fontWeight: 'bold', color: 'black' }}
-          onChangeText={(value) => setPassword(value)}
-          secureTextEntry={true}
-          returnKeyType="done"
-        />
+
+        <View style={{ width: '100%', height: '100%', flexDirection: 'row' }}>
+          <View style={{ width: '85%', flexDirection: 'row', top: 20 }}>
+            <Input
+              placeholder="Password"
+              style={{ fontWeight: 'bold', color: 'black' }}
+              onChangeText={(value) => setPassword(value)}
+              secureTextEntry={passwordVisibility}
+              returnKeyType="done"
+            />
+          </View>
+          <View style={{ height: '15%', flexDirection: 'row', top: 20, left: 0 }}>
+            <Pressable onPress={handlePasswordVisibility}>
+              <MaterialCommunityIcons name={rightIcon} size={22} color="#232323" />
+            </Pressable>
+          </View>
+        </View>
       </View>
 
       <View style={{ height: '30%', alignItems: 'center' }}>
