@@ -32,7 +32,10 @@ export default function Menu({ route, navigation }) {
   };
 
   const anunciar = () => {
-    navigation.navigate("Anunciar", { idClient: idClient, localizacao: localizacao })
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Anunciar", params: { idClient: idClient, localizacao: localizacao } }]
+    })
   };
 
   const meusAnuncios = () => {
